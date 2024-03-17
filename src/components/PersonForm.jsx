@@ -9,6 +9,24 @@ export const PersonForm = ({ newName, setNewName, newNumber, handleNewNumber, pe
 				number: newNumber
 			}
 			setPersons([...persons, newPerson])
+            fetch('http://localhost:3001/persons', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    id: Date.now(),
+                    name: newName,
+                    number: newNumber
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => {
+                    console.log(error)
+                });
 		} else {
 			alert(`${newName} is already added to the phonebook`)
 		}

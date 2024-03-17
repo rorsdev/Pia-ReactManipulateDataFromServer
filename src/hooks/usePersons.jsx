@@ -14,12 +14,23 @@ export const usePersons = () => {
         setPersons(newValue)
     }
 
+    // useEffect( () => {
+    //     axios.get('http://localhost:3001/persons')
+    //     .then(response => {
+    //         console.log(response)
+    //         handleChangePersonsValue(response.data)
+    //     })
+    //     .catch((error) => alert(`ERROR: ${error}`))
+    // }, [])
+
     useEffect( () => {
-        const promise = axios.get('http://localhost:3001/persons')
-        .then(response => {
-            console.log(response)
-            handleChangePersonsValue(response.data)
-        })
+        fetch('http://localhost:3001/persons')
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                handleChangePersonsValue(data)
+            })
+            .catch((error) => alert(`ERROR: ${error}`))			
     }, [])
 
     return {
