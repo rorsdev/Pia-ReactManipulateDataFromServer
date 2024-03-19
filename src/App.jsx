@@ -1,14 +1,7 @@
 import { Filter, Numbers, PersonForm } from "./components";
 import { useFormFilter, usePersons, useForm } from "./hooks";
-import axios from "axios";
 
 const App = () => {
-
-	// const promise = axios.get('https://catfact.ninja/fact')
-	// .then(response => {
-	// 	console.log("EMPIEZA LO BUENO: MIRA ESTE DATO DE GATOS:")
-	// 	console.log(response.data.fact)
-	// })
 
 	const { newName, newNumber, handleNewNameValue, handleNewNumberValue } = useForm();
 	const { newFilter, handleNewFilterValue } = useFormFilter();
