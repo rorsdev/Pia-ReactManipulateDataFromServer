@@ -5,8 +5,8 @@ const App = () => {
 
 	const { newName, newNumber, handleNewNameValue, handleNewNumberValue } = useForm();
 	const { newFilter, handleNewFilterValue } = useFormFilter();
-	const { persons, handleChangePersonsValue} = usePersons();
-	
+	const { persons, handleNewPersonsValue } = usePersons();
+
 	return (
 		<div>
 			<h2>Phonebook</h2>
@@ -17,10 +17,14 @@ const App = () => {
 				newNumber={ newNumber }
 				handleNewNumber={ handleNewNumberValue }
 				persons={ persons }
-				setPersons={ handleChangePersonsValue }
+				setPersons={ handleNewPersonsValue }
 
 			/>
-			<Numbers newFilter={ newFilter } persons={ persons }/>
+			<Numbers 
+				newFilter={ newFilter } 
+				persons={ persons }
+				setPersons= { handleNewPersonsValue }
+			/>
 		</div>
 	);
 };

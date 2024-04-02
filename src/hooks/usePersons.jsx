@@ -1,25 +1,24 @@
 import { useEffect, useState } from "react";
+import personService from "../services/personService";
 
 export const usePersons = () => {
     const [persons, setPersons] = useState([]);
 
-    const handleChangePersonsValue = (newValue) => {
+    const handleNewPersonsValue = (newValue) => {
         setPersons(newValue)
     }
 
     useEffect( () => {
-        fetch('http://localhost:3001/persons')
-            .then((response) => response.json())
+        personService.getAllPersons()
             .then((data) => {
-                console.log(data)
-                handleChangePersonsValue(data)
+                handleNewPersonsValue(data)
             })
-            .catch((error) => alert(`ERROR: ${error}`))			
+            .catch((error) => alert(`ERROR: ${error}`));
     }, [])
 
     return {
         persons,
-        handleChangePersonsValue
+        handleNewPersonsValue
     };
 }
 
